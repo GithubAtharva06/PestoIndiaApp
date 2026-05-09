@@ -2,6 +2,7 @@ package com.pesto.pestoindia.entities;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -15,7 +16,7 @@ public class Customer {
     private String id;
     @NotBlank
     private String name;
-    @NotBlank
+    @NotBlank @Pattern(regexp = "^[0-9]{10}$", message = "Mobile number must be 10 digits")
     private String mobileNumber;
     @NotBlank
     private String address;
