@@ -3,9 +3,9 @@ package com.pesto.pestoindia.controller;
 import com.pesto.pestoindia.repository.CustomerRepository;
 import com.pesto.pestoindia.entities.Customer;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -19,6 +19,18 @@ public class TaskController {
     @PostMapping("/requests")
     public Customer createRequest(@RequestBody Customer customer) {
         return customerRepository.save(customer);
+    }
+
+    @GetMapping("/responses")
+    public List<Customer> CustomerResponse(){
+        return customerRepository.findAll();
+    }
+
+
+    @DeleteMapping("/delete/{id}")
+    public List<Customer> DeleteResponse(@PathVariable String id){
+        customerRepository.deleteById(id);
+        return customerRepository.findAll();
     }
 
 }
