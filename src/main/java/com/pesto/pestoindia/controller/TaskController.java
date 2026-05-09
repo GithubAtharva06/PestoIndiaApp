@@ -2,6 +2,7 @@ package com.pesto.pestoindia.controller;
 
 import com.pesto.pestoindia.repository.CustomerRepository;
 import com.pesto.pestoindia.entities.Customer;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class TaskController {
     }
 
     @PostMapping("/requests")
-    public Customer createRequest(@RequestBody Customer customer) {
+    public Customer createRequest(@Valid @RequestBody Customer customer) {
         return customerRepository.save(customer);
     }
 
@@ -32,5 +33,6 @@ public class TaskController {
         customerRepository.deleteById(id);
         return customerRepository.findAll();
     }
+
 
 }
