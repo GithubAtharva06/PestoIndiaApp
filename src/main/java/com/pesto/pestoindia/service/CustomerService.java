@@ -27,9 +27,9 @@ public class CustomerService
             LocalDateTime lastrequesttime = existingcustomer.get().getCreatedAt();
             long hours = Duration.between(lastrequesttime, LocalDateTime.now()).toHours();
 
-            if (hours < 3)
+            if (hours < 2)
             {
-                throw new RuntimeException("Please wait for 3 hours before making another request.");
+                throw new RuntimeException("Please wait for 2 hours before making another request.");
             }
         }
 
