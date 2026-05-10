@@ -1,5 +1,6 @@
 package com.pesto.pestoindia.service;
 import com.pesto.pestoindia.entities.Customer;
+import com.pesto.pestoindia.entities.RequestStatus;
 import com.pesto.pestoindia.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ public class CustomerService
 
     public Customer createRequest(Customer customer)
     {
+            customer.setRequestStatus(RequestStatus.PENDING);
             return customerRepository.save(customer);
     }
 

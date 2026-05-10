@@ -25,6 +25,9 @@ public class Customer {
     @NotBlank
     private String pestType;
 
+
+    private RequestStatus requestStatus;
+
     public String getId() {
         return id;
     }
