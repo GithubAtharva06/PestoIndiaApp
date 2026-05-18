@@ -45,6 +45,16 @@ DELETE `/delete/{id}`
 
 ---
 
+## How to Run
+
+### Backend
+- Run Spring Boot app on port 8080
+
+### Frontend
+- cd frontend
+- npm install
+- npm run dev
+
 ## Project Structure
 
 ```text
