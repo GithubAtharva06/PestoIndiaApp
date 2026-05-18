@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController @ControllerAdvice @CrossOrigin(origins = "http://localhost:5173")
+@RestController @ControllerAdvice @CrossOrigin(origins = {"http://localhost:5173", "http://localhost:4173"}
+)
 public class TaskController {
     private final CustomerService customerService;
 

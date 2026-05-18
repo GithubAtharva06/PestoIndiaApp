@@ -3,7 +3,6 @@ import { useState } from "react";
 import pestImg from "./assets/pestconrtollingman.png";
 
 
-
 function Navbar({setpage}) {
   return(
     <nav className = "navbar">
@@ -11,8 +10,6 @@ function Navbar({setpage}) {
     <ul className="nav-links">
       <li><a href="#home" onClick={() => setpage('home')}>Home</a></li>
       <li><a href="#services" onClick={() => setpage('services')}>Services</a></li>
-      <li><a href="#products" onClick={() => setpage('products')}>Products</a></li>
-      <li><a href="#about" onClick={() => setpage('about')}>About Us</a></li>
     </ul>
     </nav>
   )
@@ -56,31 +53,36 @@ const handleSubmit = async () => {
 
 
   try {
-    const response = await fetch("http://localhost:8080/requests", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-  name: formData.name,
-  mobileNumber: formData.phone,   
-  address: formData.address,
-  email: formData.email,
-  pestType: formData.pest         
-})
-    });
+  console.log("FULL URL:", `${import.meta.env.VITE_API_URL}/requests`);
 
-    if (!response.ok) {
-      throw new Error("Failed");
-    }
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/requests`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name: formData.name,
+      mobileNumber: formData.phone,
+      address: formData.address,
+      email: formData.email,
+      pestType: formData.pest
+    })
+  });
 
-    alert("Service booked successfully!");
-    handleClose();
+  const data = await response.text();
+  console.log("Response:", response.status, data);
 
-  } catch (err) {
-    setError("Failed to submit. Try again.");
+  if (!response.ok) {
+    throw new Error(data);
   }
-};
+
+  alert("Service booked successfully!");
+  handleClose();
+
+} catch (err) {
+  console.log("ERROR:", err);
+  setError("Failed to submit. Try again.");
+}}
 
 
 const [error, setError] = useState("");
